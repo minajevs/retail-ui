@@ -4,9 +4,9 @@ const outputFileSync = require('output-file-sync');
 const readdir = require('fs-readdir-recursive');
 const fs = require('fs');
 const path = require('path');
-const babel = require('babel-core');
+const babel = require('@babel/core');
 const less = require('less');
-const config = require('./config.js');
+// const config = require('./config.js');
 
 const FoldersToTransform = ['components', 'lib', 'typings'];
 const IgnoreTemplates = [/__tests__/, /\.stories.js$/];
@@ -30,9 +30,9 @@ function build() {
 function transform(filename, code, opts) {
   const result = babel.transform(code, {
     filename,
-    plugins: config.plugins,
-    presets: config.presets,
     sourceMaps: true,
+    compact: false,
+    retainLines: true,
   });
   result.filename = filename;
   result.actual = code;
@@ -106,7 +106,13 @@ function logTransform(src, dest) {
 }
 
 function shouldIgnore(loc) {
-  return IgnoreTemplates.some(x => x.test(loc)) || babel.util.shouldIgnore(loc);
+  return IgnoreTemplates.some(x => x.test(loc));
+}
+
+function canCompile(filename) {
+  const exts = ['.js', '.jsx', '.es6', '.es'];
+  const ext = path.extname(filename);
+  return exts.includes(ext);
 }
 
 function handleFile(src, filename) {
@@ -114,7 +120,7 @@ function handleFile(src, filename) {
     return;
   }
 
-  if (babel.util.canCompile(filename)) {
+  if (canCompile(filename)) {
     write(src, filename);
   } else if (isLess(filename)) {
     compileLess(src, filename);

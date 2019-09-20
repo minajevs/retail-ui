@@ -119,6 +119,7 @@ describe('properly renders opened/closed states ', () => {
   const openedPopupTree: ReactComponentLike[] = [
     RenderContainer,
     RenderInnerContainer,
+    'Portal',
     LifeCycleProxy,
     Transition,
     ZIndex,

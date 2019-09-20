@@ -1,7 +1,7 @@
 /* tslint:disable:object-literal-sort-keys */
 /* eslint-disable max-len */
-import 'regenerator-runtime/runtime';
-import 'babel-polyfill';
+// import 'regenerator-runtime/runtime';
+// import 'babel-polyfill';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
