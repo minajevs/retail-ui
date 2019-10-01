@@ -53,18 +53,18 @@ storiesOf('ComboBoxView', module)
     <table>
       <tbody>
         <tr>
-          <td style={{ paddingBottom: 60, paddingRight: 10 }}>
+          <td style={{ paddingBottom: 60, paddingRight: 50 }}>
             <View editing opened />
           </td>
-          <td style={{ paddingBottom: 60 }}>
+          <td style={{ paddingBottom: 60, paddingRight: 50 }}>
             <View editing loading opened textValue="loading" />
           </td>
         </tr>
         <tr>
-          <td style={{ paddingBottom: 120, paddingRight: 10 }}>
+          <td style={{ paddingBottom: 120, paddingRight: 50 }}>
             <View editing items={[]} opened textValue="nothing" renderNotFound={() => 'Не найдено'} />
           </td>
-          <td style={{ paddingBottom: 120 }}>
+          <td style={{ paddingBottom: 120, paddingRight: 50 }}>
             <View
               editing
               textValue="one"
@@ -80,7 +80,7 @@ storiesOf('ComboBoxView', module)
     </table>
   ))
   .add('with items', () => (
-    <div style={{ paddingBottom: 400 }}>
+    <div style={{ paddingBottom: 400, paddingRight: 50 }}>
       <View
         editing
         textValue="one"
