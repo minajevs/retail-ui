@@ -52,6 +52,30 @@ describe('Select', function() {
       await expect(await element.takeScreenshot()).to.matchImage('selected item');
     });
   });
+  describe('With small menuWidth prop', function() {
+    it('opened', async function() {
+      const element = await this.browser.findElement(By.css('.dropdown-test-container'));
+      await this.browser
+        .actions({
+          bridge: true,
+        })
+        .click(this.browser.findElement(By.css('[data-comp-name~="Select"]')))
+        .perform();
+      await expect(await element.takeScreenshot()).to.matchImage('clicked');
+    });
+  });
+  describe('With big menuWidth prop', function() {
+    it('opened', async function() {
+      const element = await this.browser.findElement(By.css('.dropdown-test-container'));
+      await this.browser
+        .actions({
+          bridge: true,
+        })
+        .click(this.browser.findElement(By.css('[data-comp-name~="Select"]')))
+        .perform();
+      await expect(await element.takeScreenshot()).to.matchImage('clicked');
+    });
+  });
   describe('use link', function() {
     it('idle', async function() {
       const element = await this.browser.findElement(By.css('.dropdown-test-container'));

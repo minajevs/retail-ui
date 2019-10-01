@@ -52,11 +52,13 @@ class SelectWithNull extends React.Component<any, any> {
 
 storiesOf('Select', module)
   .addDecorator(story => (
-    <div className="dropdown-test-container" style={{ height: 150, width: 200, padding: 4 }}>
+    <div className="dropdown-test-container" style={{ height: 150, width: 255, padding: 4 }}>
       {story()}
     </div>
   ))
   .add('Simple', () => <Select items={['one', 'two', 'three']} />)
+  .add('With small menuWidth prop', () => <Select menuWidth={25} items={['1', '2', '3']} />)
+  .add('With big menuWidth prop', () => <Select menuWidth={250} items={['one', 'two', 'three']} />)
   .add('Complex values', () => <SelectWrapper />)
   .add('With null', () => <SelectWithNull />)
   .add('use link', () => <Select use="link" items={['one', 'two', 'three']} />)
