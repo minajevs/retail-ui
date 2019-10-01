@@ -290,7 +290,7 @@ export default class DateSelect extends React.Component<DateSelectProps, DateSel
     return (
       <RenderLayer onClickOutside={this.close} onFocusOutside={this.close} active>
         <div>
-          <DropdownContainer getParent={this.getAnchor} offsetY={dropdownOffset} offsetX={-10}>
+          <DropdownContainer getParent={this.getAnchor} offsetY={dropdownOffset} offsetX={-10} menuDeltaWidth={0}>
             <div className={holderClass} style={style}>
               {!this.state.topCapped && (
                 <div

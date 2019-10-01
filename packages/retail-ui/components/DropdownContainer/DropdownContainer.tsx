@@ -22,6 +22,7 @@ export interface DropdownContainerProps {
   getParent: () => DOMNode;
   children?: React.ReactNode;
   disablePortal?: boolean;
+  menuDeltaWidth?: number;
   offsetY?: number;
   offsetX?: number;
 }
@@ -36,6 +37,7 @@ export default class DropdownContainer extends React.Component<DropdownContainer
   public static defaultProps = {
     align: 'left',
     disablePortal: false,
+    menuDeltaWidth: 35,
     offsetX: 0,
     offsetY: -1,
   };
@@ -176,7 +178,7 @@ export default class DropdownContainer extends React.Component<DropdownContainer
     if (!this.isElement(target)) {
       return 0;
     }
-    return target.getBoundingClientRect().width;
+    return target.getBoundingClientRect().width + this.getProps().menuDeltaWidth;
   };
 
   private convertToRelativePosition = (position: DropdownContainerPosition): DropdownContainerPosition => {
