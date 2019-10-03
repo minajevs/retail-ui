@@ -2,6 +2,12 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Loader from '../Loader';
+import Tooltip from '../../Tooltip';
+import Input from '../../Input';
+import Modal from '../../Modal';
+import Hint from '../../Hint';
+import Button from '../../Button';
+import Select from '../../Select';
 
 function getItems(count: number) {
   const items = [];
@@ -28,6 +34,63 @@ class ContentComponent extends React.Component<{
             <div key={i}>{i}</div>
           ))}
         </Loader>
+      </div>
+    );
+  }
+}
+
+class ButtonHint extends React.Component {
+  public state = {
+    opened: false,
+  };
+
+  public renderModal() {
+    return (
+      <Modal onClose={this.close}>
+        <Modal.Header>Title</Modal.Header>
+        <Modal.Body>
+          <p>
+            Use rxjs operators with react hooks. Use rxjs operators with react hooksUse rxjs operators with react
+            hooksUse rxjs operators with react hooksUse rxjs operators with react hooksUse rxjs operators with react
+            hooksUse rxjs operators with react hooksUse rxjs operators with react hooksUse rxjs operators with react
+            hooks
+          </p>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </Modal.Body>
+        <Modal.Footer panel={true}>
+          <Button onClick={this.close}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  public open = () => {
+    this.setState({ opened: true });
+  };
+
+  public close = () => {
+    this.setState({ opened: false });
+  };
+
+  public render() {
+    return (
+      <div style={{ padding: '100px' }}>
+        {this.state.opened && this.renderModal()}
+        <Hint text="Text">
+          <Button onClick={this.open}>Open</Button>
+        </Hint>
       </div>
     );
   }
@@ -115,4 +178,69 @@ storiesOf('Loader', module)
   .add('Horizontal scroll', () => <ContentComponent itemsCount={10} additionalStyle={{ width: '2500px' }} />)
   .add('Both dimensions scrollable content with spaces around', () => (
     <ContentComponent itemsCount={200} additionalStyle={{ width: '2500px', margin: '600px 200px' }} />
-  ));
+  ))
+  .add('story1', () => (
+    <div style={{ width: '500px' }}>
+      <Loader type="big" active>
+        <div style={{ height: 100 }} />
+        <Tooltip render={() => 'Hello'} trigger="opened" pos="top right">
+          <Input />
+        </Tooltip>
+      </Loader>
+    </div>
+  ))
+  .add('story2', () => <ButtonHint />)
+  .add('Loader and Modal', () => (
+    <Modal>
+      <Modal.Header>Title</Modal.Header>
+      <Modal.Body>
+        <Loader active type="big">
+          Body
+        </Loader>
+      </Modal.Body>
+      <Modal.Footer panel={true}>Footer</Modal.Footer>
+    </Modal>
+  ))
+  .add('Tooltip and Modal', () => (
+    <Modal onClose={close} width="400px">
+      <Modal.Header>Title</Modal.Header>
+      <Modal.Body>
+        <div style={{ height: '1000px' }} />
+        <Tooltip
+          render={() => (
+            <div style={{ width: 250 }}>
+              Задача организации, в особенности же рамки и место обучения кадров влечет за собой процесс внедрения и
+              модернизации форм развития.
+            </div>
+          )}
+          pos="right top"
+          trigger={'opened'}
+        >
+          <Button size={'medium'}>Menu</Button>
+        </Tooltip>
+      </Modal.Body>
+      <Modal.Footer panel>
+        <Button onClick={close}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  ))
+  .add('Tooltip and DropdownMenu', () => {
+    const render = () => (
+      <div
+        style={{
+          width: 250,
+          fontSize: 14,
+          fontFamily: 'Segoe UI',
+        }}
+      >
+        Задача организации, в особенности же рамки и место обучения кадров влечет за собой процесс внедрения и
+        модернизации форм развития.
+      </div>
+    );
+
+    return (
+      <Tooltip render={render} pos="bottom right">
+        <Select width={120} value={'small'} items={['small', 'medium', 'large']} size={'small'} />
+      </Tooltip>
+    );
+  });
