@@ -14,9 +14,9 @@
     "@types/mocha": "^5.2.5",
     "@types/selenium-webdriver": "^4.0.0",
     "chai": "^4.2.0",
-    "creevey": "^0.0.24",
+    "creevey": "../../../../kich.sc/creevey/creevey-v0.0.24.tgz",
     "mocha": "^6.0.2",
-    "selenium-webdriver": "^4.0.0-alpha.1",
+    "selenium-webdriver": "^4.0.0-alpha.5",
     "ts-node": "^8.0.3",
     "typescript": "^3.3.3333",
     "wait-on": "^3.2.0"
